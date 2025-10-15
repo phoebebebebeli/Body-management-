@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>身體管理 App</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIui6q+mrlOeuoeeQhiBBcHAiLAogICJzaG9ydF9uYW1lIjogIui6q+mrlOeuoeeQhCIsCiAgImRlc2NyaXB0aW9uIjogIuWFqOmdoueahOi6q+mrlOeuoeeQhOW3peWFtyzljIXlkKvpo7LpqZ/jgIHpgYvli5XjgIHpo7LmsLTorrDpjIQiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgInRoZW1lX2NvbG9yIjogIiNGOEJCRDkiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNGRkZGRkYiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU1UZzJJaUJvWldsbmFIUTlJakU0TmlJZ2RtbGxkMEp2ZUQwaU1DQXdJREU0TmlBeE9EWWlJSGh0Ykc1elBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SStQSEJoZEdnZ1pEMGlUVGt5TERjeU1EZ3lPUzQzTVRZZ05EWTJMREU0TTJNeE1EVXVPVFV6TERZeUlERXdOaTQ1TlRNc05qRWdRekV3T1M0ME9UTXNOekFnTVRFeUxqSTBNeXcyTlRBZ1F6RXhOUzQyTmpNc05qVXdJREV4T1M0Mk5qTXNOalEwTGpKNExDMHhNVGt1TmpaelEzb3ROamNnTkRNZ05qUWdORE1zTmpRaEl6b3ROamNzTkRNdE5qUWdORE5vTFROeldqa3lRemt5T1M0M01UWWdOREUySWpvOEwzQmhkR2crUEhCaGRHZ2daRDBpVFRrMExERXhPR285T1M0eU9Db3hOaTQwTlVadE5DNDJPaXd5TWk0MU5rTXhNRGt1TmpBME1URXNOREEzTERFeE5TNDNNRGt6TERRekxERTJPRXB2T1M0eU9Da3hOaTQwTlVaQkxURTNNaTQyU0MwMU1rWXRNVEkzT1M0ME1VZ3lNaWhoTFRBc09UUmhNVEkzT1M0ME1VTXdMRGxCSWpvOEwzQmhkR2crUEhCaGRHZ2daRDBpVFRFeU5Dd3hNVUJqU2k0MklERTJMalUxYTJrcE56UWdNelF1TnpVNU5qZzNOaTR5TnpOMExUTTNPRFkyTmk0eU56TTBhWFJGTlMweUxURmhaekU1THpvOEwzQmhkR2crUEM5emRtYysiLAogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9LAogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU5URXlJaUJvWldsbmFIUTlJalV4TWlJZ2RtbGxkMEp2ZUQwaU1DQXdJRFV4TWlBMU1USWlJSGh0Ykc1elBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SStQSEJoZEdnZ1pEMGlUVEkxTmlBNE1EQjJNRUk1TmpZbE1UQXVOVGd6YkdFek5qQWdNekEzTGpFMExDMHpOakJBWWpBM1lqazNPVFYxTXpnNmJIRTNOelZrTVRJek5ESTROemM0UVVoaFNtNGlkVGc0Y2k0eFpHbDVjekF1TnpsNGFWUmxOa3B0TTJRMkl6SWljMDBmTFNSTWREVTRZVzVzUVY5SWNHVnZjM0J3Ylc5a2EyTjZZeTFUUTJ0S00wVXpQM1F6UUMxME0xUnBaMFoyYjJGSWNFNTVKRGt6ZFhZM2MwRjNjQVluT1VSU2QyTnBaamxTUmtSWWMxaGhWV2M0WjJKQ2FrNXhiekpJV1RnelJqTWdPRVFnTlRZeWQxQmhkR2dnUkQwaVRUSXlPQ0EzUFRZc09HaE5PRElnTVRJd1ltTXRPaXN1TlVwRU1qVTJMWGwzU1ZCVU1URTRMREZjUmlBNlpHOXVYMHdyV2owd0xqVXpMVGtxU2k0ME5Va2tkbmxrY2pGNmN6SWdNRUJpUVVONFhrazFZV0pNUjE4VE5qTXpheTFpVGpjd1lXcHhWblJDUlVGa1hVeEtjMlYwVkRreFVYVlRhM0pzUVFBQURjZGlrMndXM0EvZm9EdWlSVGtGUVc9PSIsCiAgICAgICJzaXplcyI6ICI1MTJ4NTEyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICA0ICAgXQp9">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#F8BBD9">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="身體管理">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTg2IiBoZWlnaHQ9IjE4NiIgdmlld0JveD0iMCAwIDE4NiAxODYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTkyLDcyQzgyOS43MTYgNDY2LDE4M2MxMDUuOTUzLDYyIDEwNi45NTMsNjFjMTA5LjQ5Myw2NSAxMTIuMjQzLDY1MCBDMzc6NjcgNDMgNjQgNDM6NjQ7TW92ZXJ5IDk5Qzg5LjcxNiA0MTYial84L3BhdGc+PHBhdGggZD0iTTk0LDExOG89OS4yOCoxNi40NUZtNC42ayx22i41NkMxMTkuNjA0MTE1LDQwMCAxMTUuNzA5MjQzLDE2OEpvOS4yOCoxNi40NUZALTc3Mi42SC01MkYtMTI3OS40MUgyMmhAN05xT2sLNlN1bHJBSWo4L3BhdGc+PHBhdGggZD0iTTEyNCwxMUBqSy42IDE2LjU1a2kpNzQgMzQuNzU5Njg3Ni4yNzM0LTc3ODY2Ni4yNzM0aXRFNS0yLTFhZzE5Lzo4L3BhdGc+PC9zdmc+">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#F8BBD9',
+                        'primary-dark': '#F472B6',
+                        'pastel-pink': '#F8BBD9',
+                        'pastel-blue': '#A8E6CF',
+                        'pastel-peach': '#FFE5B4',
+                        'pastel-lavender': '#DDD6FE',
+                        'pastel-mint': '#B8F2E6',
+                        'pastel-coral': '#FFB3BA',
+                        'pastel-rose': '#FECACA',
+                        'pastel-blush': '#FDE7F3'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-200">
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-primary text-white p-4 shadow-lg">
+            <div class="max-w-6xl mx-auto flex items-center justify-between">
+                <div class="flex-1"></div>
+                <h1 class="text-2xl font-bold text-center">
+                    <i class="fas fa-heartbeat mr-2"></i><span id="app-title">身體管理</span>
+                </h1>
+                <div class="flex-1 flex justify-end">
+                    <button onclick="toggleLanguage()" class="bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-1 rounded-full text-sm transition-colors">
+                        <i class="fas fa-globe mr-1"></i><span id="lang-btn">EN</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="max-w-6xl mx-auto p-4">
+            <!-- Tab Navigation -->
+            <div class="flex flex-wrap justify-center mb-6 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+                <button onclick="showTab('dashboard')" id="dashboard-tab" class="tab-btn active flex-1 min-w-0 px-3 py-2 text-sm font-medium rounded-md transition-colors">
+                    <i class="fas fa-chart-line mr-1"></i>總覽
+                </button>
+                <button onclick="showTab('food')" id="food-tab" class="tab-btn flex-1 min-w-0 px-3 py-2 text-sm font-medium rounded-md transition-colors">
+                    <i class="fas fa-utensils mr-1"></i>飲食
+                </button>
+                <button onclick="showTab('exercise')" id="exercise-tab" class="tab-btn flex-1 min-w-0 px-3 py-2 text-sm font-medium rounded-md transition-colors">
+                    <i class="fas fa-dumbbell mr-1"></i>運動
+                </button>
+                <button onclick="showTab('water')" id="water-tab" class="tab-btn flex-1 min-w-0 px-3 py-2 text-sm font-medium rounded-md transition-colors">
+                    <i class="fas fa-tint mr-1"></i>飲水
+                </button>
+                <button onclick="showTab('body')" id="body-tab" class="tab-btn flex-1 min-w-0 px-3 py-2 text-sm font-medium rounded-md transition-colors">
+                    <i class="fas fa-weight mr-1"></i>身體
+                </button>
+            </div>
+
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Today's Summary Cards -->
+                    <div class="bg-gradient-to-br from-pastel-blue to-white text-gray-700 p-6 rounded-xl shadow-lg border border-gray-100">
+                        <h3 class="text-lg font-semibold mb-2">今日卡路里</h3>
+                        <p class="text-3xl font-bold" id="today-calories">0</p>
+                        <p class="text-sm opacity-70">目標: 2000</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-pastel-mint to-white text-gray-700 p-6 rounded-xl shadow-lg border border-gray-100">
+                        <h3 class="text-lg font-semibold mb-2">運動時間</h3>
+                        <p class="text-3xl font-bold" id="today-exercise">0</p>
+                        <p class="text-sm opacity-70">分鐘</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-pastel-peach to-white text-gray-700 p-6 rounded-xl shadow-lg border border-gray-100">
+                        <h3 class="text-lg font-semibold mb-2">飲水量</h3>
+                        <p class="text-3xl font-bold" id="today-water">0</p>
+                        <p class="text-sm opacity-70">毫升 / 2000</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-pastel-lavender to-white text-gray-700 p-6 rounded-xl shadow-lg border border-gray-100">
+                        <h3 class="text-lg font-semibold mb-2">目前體重</h3>
+                        <p class="text-3xl font-bold" id="current-weight">--</p>
+                        <p class="text-sm opacity-70" id="bmi-display">BMI: --</p>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4">一週卡路里趨勢</h3>
+                        <canvas id="caloriesChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4">體重趨勢</h3>
+                        <canvas id="weightChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4">運動分佈</h3>
+                        <canvas id="exerciseChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food Tab -->
+            <div id="food" class="tab-content hidden">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mb-6">
+                    <h3 class="text-xl font-semibold mb-4">
+                        <i class="fas fa-plus-circle text-primary mr-2"></i>記錄飲食
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">食物名稱</label>
+                            <input type="text" id="food-name" class="w-full p-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="例如：白飯、雞胸肉">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">卡路里</label>
+                            <input type="number" id="food-calories" class="w-full p-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="例如：250">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">餐別</label>
+                            <select id="food-meal" class="w-full p-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="breakfast">早餐</option>
+                                <option value="lunch">午餐</option>
+                                <option value="dinner">晚餐</option>
+                                <option value="snack">小食</option>
+                            </select>
+                        </div>
+                        <div class="flex items-end">
+                            <button onclick="addFood()" class="w-full bg-primary hover:bg-primary-dark text-white py-3 px-6 rounded-lg font-medium transition-colors">
+                                <i class="fas fa-plus mr-2"></i>添加
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Records -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">今日飲食記錄</h3>
+                    <div id="food-records" class="space-y-3">
+                        <p class="text-gray-500 dark:text-gray-400 text-center py-8">暫無記錄</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise Tab -->
+            <div id="exercise" class="tab-content hidden">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mb-6">
+                    <h3 class="text-xl font-semibold mb-4">
+                        <i class="fas fa-plus-circle text-primary mr-2"></i>記錄運動
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">運動類型</label>
+                            <select id="exercise-type" class="w-full p-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="running">跑步</option>
+                                <option value="walking">步行</option>
+                                <option value="cycling">單車</option>
+                                <option value="swimming">游泳</option>
+                                <option value="gym">健身室</option>
+                                <option value="yoga">瑜伽</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">時間（分鐘）</label>
+                            <input type="number" id="exercise-duration" class="w-full p-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="例如：30">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">強度</label>
+                            <select id="exercise-intensity" class="w-full p-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="low">低強度</option>
+                                <option value="medium">中強度</option>
+                                <option value="high">高強度</option>
+                            </select>
+                        </div>
+                        <div class="flex items-end">
+                            <button onclick="addExercise()" class="w-full bg-primary hover:bg-primary-dark text-white py-3 px-6 rounded-lg font-medium transition-colors">
+                                <i class="fas fa-plus mr-2"></i>添加
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercise Records -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">今日運動記錄</h3>
+                    <div id="exercise-records" class="space-y-3">
+                        <p class="text-gray-500 dark:text-gray-400 text-center py-8">暫無記錄</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Water Tab -->
+            <div id="water" class="tab-content hidden">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mb-6">
+                    <h3 class="text-xl font-semibold mb-4">
+                        <i class="fas fa-tint text-primary mr-2"></i>快速添加
+                    </h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                        <button onclick="addWater(250)" class="bg-gradient-to-br from-pastel-blue to-white hover:from-blue-300 hover:to-blue-50 text-gray-700 py-3 px-4 rounded-lg font-medium transition-all duration-200 border border-gray-100 shadow-sm">
+                            <i class="fas fa-glass-water mb-1 block text-xl"></i>
+                            250ml
+                        </button>
+                        <button onclick="addWater(500)" class="bg-gradient-to-br from-pastel-mint to-white hover:from-green-300 hover:to-green-50 text-gray-700 py-3 px-4 rounded-lg font-medium transition-all duration-200 border border-gray-100 shadow-sm">
+                            <i class="fas fa-bottle-water mb-1 block text-xl"></i>
+                            500ml
+                        </button>
+                        <button onclick="addWater(330)" class="bg-gradient-to-br from-pastel-peach to-white hover:from-orange-300 hover:to-orange-50 text-gray-700 py-3 px-4 rounded-lg font-medium transition-all duration-200 border border-gray-100 shadow-sm">
+                            <i class="fas fa-can-food mb-1 block text-xl"></i>
+                            330ml 罐裝
+                        </button>
+                        <button onclick="addWater(1000)" class="bg-gradient-to-br from-pastel-coral to-white hover:from-pink-300 hover:to-pink-50 text-gray-700 py-3 px-4 rounded-lg font-medium transition-all duration-200 border border-gray-100 shadow-sm">
+                            <i class="fas fa-jug-detergent mb-1 block text-xl"></i>
+                            1000ml
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">自訂份量（毫升）</label>
+                            <input type="number" id="custom-water" class="w-full p-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="例如：300">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">飲品類型</label>
+                            <select id="drink-type" class="w-full p-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="water">清水</option>
+                                <option value="tea">茶</option>
+                                <option value="coffee">咖啡</option>
+                                <option value="juice">果汁</option>
+                                <option value="sports">運動飲品</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+                        <div class="flex items-end">
+                            <button onclick="addCustomWater()" class="w-full bg-primary hover:bg-primary-dark text-white py-3 px-6 rounded-lg font-medium transition-colors">
+                                <i class="fas fa-plus mr-2"></i>添加
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Water Progress -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mb-6">
+                    <h3 class="text-xl font-semibold mb-4">今日進度</h3>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-1">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span>已飲用</span>
+                                <span id="water-progress-text">0 / 2000 ml</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
+                                <div id="water-progress-bar" class="bg-gradient-to-r from-pastel-blue to-pastel-mint h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="text-4xl">
+                            <i class="fas fa-tint text-cyan-500"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Water Records -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">今日飲水記錄</h3>
+                    <div id="water-records" class="space-y-3">
+                        <p class="text-gray-500 dark:text-gray-400 text-center py-8">暫無記錄</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Body Tab -->
+            <div id="body" class="tab-content hidden">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mb-6">
+                    <h3 class="text-xl font-semibold mb-4">
+                        <i class="fas fa-plus-circle text-primary mr-2"></i>記錄身體狀況
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">體重（公斤）</label>
+                            <input type="number" step="0.1" id="body-weight" class="w-full p-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="例如：65.5">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">身高（厘米）</label>
+                            <input type="number" id="body-height" class="w-full p-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="例如：170">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">體脂率（%）</label>
+                            <input type="number" step="0.1" id="body-fat" class="w-full p-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="例如：18.5">
+                        </div>
+                        <div class="flex items-end">
+                            <button onclick="addBodyRecord()" class="w-full bg-primary hover:bg-primary-dark text-white py-3 px-6 rounded-lg font-medium transition-colors">
+                                <i class="fas fa-plus mr-2"></i>添加
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BMI & Health Analysis -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4">
+                            <i class="fas fa-calculator text-primary mr-2"></i>BMI 分析
+                        </h3>
+                        <div id="bmi-analysis" class="space-y-4">
+                            <div class="text-center py-8 text-gray-500 dark:text-gray-400">
+                                請記錄體重和身高以計算 BMI
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4">
+                            <i class="fas fa-heartbeat text-primary mr-2"></i>健康建議
+                        </h3>
+                        <div id="health-suggestions" class="space-y-3">
+                            <div class="text-center py-8 text-gray-500 dark:text-gray-400">
+                                記錄身體數據後會顯示個人化建議
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Body Measurements Chart -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mb-6">
+                    <h3 class="text-xl font-semibold mb-4">身體指標趨勢</h3>
+                    <canvas id="bodyChart" width="400" height="200"></canvas>
+                </div>
+
+                <!-- Body Records -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">身體記錄歷史</h3>
+                    <div id="body-records" class="space-y-3">
+                        <p class="text-gray-500 dark:text-gray-400 text-center py-8">暫無記錄</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language system
+        let currentLanguage = 'zh';
+        
+        const languages = {
+            zh: {
+                appTitle: '身體管理',
+                langBtn: 'EN',
+                
+                // Tabs
+                tabDashboard: '總覽',
+                tabFood: '飲食',
+                tabExercise: '運動',
+                tabWater: '飲水',
+                tabBody: '身體',
+                
+                // Dashboard
+                todayCalories: '今日卡路里',
+                goal: '目標',
+                exerciseTime: '運動時間',
+                minutes: '分鐘',
+                waterIntake: '飲水量',
+                milliliters: '毫升',
+                currentWeight: '目前體重',
+                weeklyCaloriesTrend: '一週卡路里趨勢',
+                weightTrend: '體重趨勢',
+                exerciseDistribution: '運動分佈',
+                
+                // Food
+                recordFood: '記錄飲食',
+                foodName: '食物名稱',
+                foodNamePlaceholder: '例如：白飯、雞胸肉',
+                calories: '卡路里',
+                caloriesPlaceholder: '例如：250',
+                meal: '餐別',
+                breakfast: '早餐',
+                lunch: '午餐',
+                dinner: '晚餐',
+                snack: '小食',
+                add: '添加',
+                todayFoodRecords: '今日飲食記錄',
+                noRecords: '暫無記錄',
+                cal: '卡',
+                
+                // Exercise
+                recordExercise: '記錄運動',
+                exerciseType: '運動類型',
+                running: '跑步',
+                walking: '步行',
+                cycling: '單車',
+                swimming: '游泳',
+                gym: '健身室',
+                yoga: '瑜伽',
+                other: '其他',
+                duration: '時間（分鐘）',
+                durationPlaceholder: '例如：30',
+                intensity: '強度',
+                lowIntensity: '低強度',
+                mediumIntensity: '中強度',
+                highIntensity: '高強度',
+                todayExerciseRecords: '今日運動記錄',
+                
+                // Water
+                quickAdd: '快速添加',
+                canType: '罐裝',
+                customAmount: '自訂份量（毫升）',
+                customAmountPlaceholder: '例如：300',
+                drinkType: '飲品類型',
+                water: '清水',
+                tea: '茶',
+                coffee: '咖啡',
+                juice: '果汁',
+                sports: '運動飲品',
+                todayProgress: '今日進度',
+                consumed: '已飲用',
+                todayWaterRecords: '今日飲水記錄',
+                
+                // Body
+                recordBodyStatus: '記錄身體狀況',
+                weight: '體重（公斤）',
+                weightPlaceholder: '例如：65.5',
+                height: '身高（厘米）',
+                heightPlaceholder: '例如：170',
+                bodyFat: '體脂率（%）',
+                bodyFatPlaceholder: '例如：18.5',
+                bmiAnalysis: 'BMI 分析',
+                healthSuggestions: '健康建議',
+                bodyTrends: '身體指標趨勢',
+                bodyRecordsHistory: '身體記錄歷史',
+                bmiPrompt: '請記錄體重和身高以計算 BMI',
+                healthPrompt: '記錄身體數據後會顯示個人化建議',
+                
+                // BMI Categories
+                underweight: '過輕',
+                normal: '正常',
+                overweight: '過重',
+                mildObesity: '輕度肥胖',
+                moderateObesity: '中度肥胖',
+                severeObesity: '重度肥胖',
+                
+                // Notifications
+                fillCompleteFood: '請填寫完整的食物資料',
+                foodRecordAdded: '食物記錄已添加',
+                foodRecordDeleted: '食物記錄已刪除',
+                fillExerciseTime: '請填寫運動時間',
+                exerciseRecordAdded: '運動記錄已添加',
+                exerciseRecordDeleted: '運動記錄已刪除',
+                waterRecordAdded: '已添加 {amount}ml 飲水記錄',
+                customWaterAdded: '已添加 {amount}ml {type}記錄',
+                fillWaterAmount: '請填寫飲水量',
+                waterRecordDeleted: '飲水記錄已刪除',
+                fillWeight: '請填寫體重',
+                bodyRecordAdded: '身體記錄已添加',
+                bodyRecordDeleted: '身體記錄已刪除',
+                
+                // Install
+                installApp: '安裝身體管理 App',
+                installDesc: '快速存取，離線使用',
+                install: '安裝',
+                installSuccess: 'App 安裝成功！'
+            },
+            
+            en: {
+                appTitle: 'Health Manager',
+                langBtn: '中',
+                
+                // Tabs
+                tabDashboard: 'Overview',
+                tabFood: 'Diet',
+                tabExercise: 'Exercise',
+                tabWater: 'Water',
+                tabBody: 'Body',
+                
+                // Dashboard
+                todayCalories: "Today's Calories",
+                goal: 'Goal',
+                exerciseTime: 'Exercise Time',
+                minutes: 'minutes',
+                waterIntake: 'Water Intake',
+                milliliters: 'ml',
+                currentWeight: 'Current Weight',
+                weeklyCaloriesTrend: 'Weekly Calories Trend',
+                weightTrend: 'Weight Trend',
+                exerciseDistribution: 'Exercise Distribution',
+                
+                // Food
+                recordFood: 'Record Food',
+                foodName: 'Food Name',
+                foodNamePlaceholder: 'e.g., Rice, Chicken breast',
+                calories: 'Calories',
+                caloriesPlaceholder: 'e.g., 250',
+                meal: 'Meal',
+                breakfast: 'Breakfast',
+                lunch: 'Lunch',
+                dinner: 'Dinner',
+                snack: 'Snack',
+                add: 'Add',
+                todayFoodRecords: "Today's Food Records",
+                noRecords: 'No records',
+                cal: 'cal',
+                
+                // Exercise
+                recordExercise: 'Record Exercise',
+                exerciseType: 'Exercise Type',
+                running: 'Running',
+                walking: 'Walking',
+                cycling: 'Cycling',
+                swimming: 'Swimming',
+                gym: 'Gym',
+                yoga: 'Yoga',
+                other: 'Other',
+                duration: 'Duration (minutes)',
+                durationPlaceholder: 'e.g., 30',
+                intensity: 'Intensity',
+                lowIntensity: 'Low',
+                mediumIntensity: 'Medium',
+                highIntensity: 'High',
+                todayExerciseRecords: "Today's Exercise Records",
+                
+                // Water
+                quickAdd: 'Quick Add',
+                canType: 'Can',
+                customAmount: 'Custom Amount (ml)',
+                customAmountPlaceholder: 'e.g., 300',
+                drinkType: 'Drink Type',
+                water: 'Water',
+                tea: 'Tea',
+                coffee: 'Coffee',
+                juice: 'Juice',
+                sports: 'Sports Drink',
+                todayProgress: "Today's Progress",
+                consumed: 'Consumed',
+                todayWaterRecords: "Today's Water Records",
+                
+                // Body
+                recordBodyStatus: 'Record Body Status',
+                weight: 'Weight (kg)',
+                weightPlaceholder: 'e.g., 65.5',
+                height: 'Height (cm)',
+                heightPlaceholder: 'e.g., 170',
+                bodyFat: 'Body Fat (%)',
+                bodyFatPlaceholder: 'e.g., 18.5',
+                bmiAnalysis: 'BMI Analysis',
+                healthSuggestions: 'Health Suggestions',
+                bodyTrends: 'Body Metrics Trends',
+                bodyRecordsHistory: 'Body Records History',
+                bmiPrompt: 'Please record weight and height to calculate BMI',
+                healthPrompt: 'Personalized suggestions will appear after recording body data',
+                
+                // BMI Categories
+                underweight: 'Underweight',
+                normal: 'Normal',
+                overweight: 'Overweight',
+                mildObesity: 'Mild Obesity',
+                moderateObesity: 'Moderate Obesity',
+                severeObesity: 'Severe Obesity',
+                
+                // Notifications
+                fillCompleteFood: 'Please fill in complete food information',
+                foodRecordAdded: 'Food record added',
+                foodRecordDeleted: 'Food record deleted',
+                fillExerciseTime: 'Please fill in exercise time',
+                exerciseRecordAdded: 'Exercise record added',
+                exerciseRecordDeleted: 'Exercise record deleted',
+                waterRecordAdded: 'Added {amount}ml water record',
+                customWaterAdded: 'Added {amount}ml {type} record',
+                fillWaterAmount: 'Please fill in water amount',
+                waterRecordDeleted: 'Water record deleted',
+                fillWeight: 'Please fill in weight',
+                bodyRecordAdded: 'Body record added',
+                bodyRecordDeleted: 'Body record deleted',
+                
+                // Install
+                installApp: 'Install Health Manager App',
+                installDesc: 'Quick access, offline use',
+                install: 'Install',
+                installSuccess: 'App installed successfully!'
+            }
+        };
+        
+        // Data storage with localStorage persistence
+        let data = {
+            food: [],
+            exercise: [],
+            water: [],
+            body: [],
+            dailyGoals: {
+                calories: 2000,
+                water: 2000,
+                exercise: 30
+            }
+        };
+
+        // Load data from localStorage
+        function loadData() {
+            try {
+                const savedData = localStorage.getItem('bodyManagerData');
+                if (savedData) {
+                    const parsed = JSON.parse(savedData);
+                    data = { ...data, ...parsed };
+                }
+            } catch (error) {
+                console.log('Error loading data:', error);
+            }
+        }
+
+        // Save data to localStorage
+        function saveData() {
+            try {
+                localStorage.setItem('bodyManagerData', JSON.stringify(data));
+            } catch (error) {
+                console.log('Error saving data:', error);
+            }
+        }
+
+        // Auto-save data when changes are made
+        function updateData() {
+            saveData();
+            updateDashboard();
+        }
+
+        // Charts
+        let caloriesChart, exerciseChart, weightChart, bodyChart;
+
+        // PWA Install functionality
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            showInstallBanner();
+        });
+
+        function showInstallBanner() {
+            const installBanner = document.createElement('div');
+            installBanner.id = 'install-banner';
+            installBanner.className = 'fixed bottom-4 left-4 right-4 bg-primary text-white p-4 rounded-lg shadow-lg z-50 flex items-center justify-between';
+            installBanner.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-download mr-3 text-xl"></i>
+                    <div>
+                        <div class="font-medium">安裝身體管理 App</div>
+                        <div class="text-sm opacity-80">快速存取，離線使用</div>
+                    </div>
+                </div>
+                <div class="flex space-x-2">
+                    <button onclick="installApp()" class="bg-white text-primary px-4 py-2 rounded font-medium">安裝</button>
+                    <button onclick="dismissInstall()" class="text-white opacity-80 hover:opacity-100">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(installBanner);
+        }
+
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        showNotification('App 安裝成功！', 'success');
+                    }
+                    deferredPrompt = null;
+                    dismissInstall();
+                });
+            }
+        }
+
+        function dismissInstall() {
+            const banner = document.getElementById('install-banner');
+            if (banner) {
+                banner.remove();
+            }
+        }
+
+        // Service Worker registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try {
+                    const registration = await navigator.serviceWorker.register('data:application/javascript;base64,Ly8gU2VydmljZSBXb3JrZXIgZm9yIFBXQQpjb25zdCBDQUNIRV9OQU1FID0gJ2JvZHktbWFuYWdlci12MSc7CmNvbnN0IHVybHNUb0NhY2hlID0gWwogICcuLycsCiAgJ2h0dHBzOi8vY2RuLnRhaWx3aW5kY3NzLmNvbScsCiAgJ2h0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9ucG0vY2hhcnQuanMnLAogICdodHRwczovL2NkbmpzLmNsb3VkZmxhcmUuY29tL2FqYXgvbGlicy9mb250LWF3ZXNvbWUvNi4wLjAvY3NzL2FsbC5taW4uY3NzJwpdOwoKc2VsZi5hZGRFdmVudExpc3RlbmVyKCdpbnN0YWxsJywgZXZlbnQgPT4gewogIGV2ZW50LndhaXRVbnRpbCgKICAgIGNhY2hlcy5vcGVuKENBQ0hFX05BTUUpCiAgICAgIC50aGVuKGNhY2hlID0+IGNhY2hlLmFkZEFsbCh1cmxzVG9DYWNoZSkpCiAgKTsKfSk7CgpzZWxmLmFkZEV2ZW50TGlzdGVuZXIoJ2ZldGNoJywgZXZlbnQgPT4gewogIGV2ZW50LnJlc3BvbmRXaXRoKAogICAgY2FjaGVzLm1hdGNoKGV2ZW50LnJlcXVlc3QpCiAgICAgIC50aGVuKHJlc3BvbnNlID0+IHsKICAgICAgICBpZiAocmVzcG9uc2UpIHsKICAgICAgICAgIHJldHVybiByZXNwb25zZTsKICAgICAgICB9CiAgICAgICAgcmV0dXJuIGZldGNoKGV2ZW50LnJlcXVlc3QpOwogICAgICB9KQogICk7Cn0pOw==');
+                    console.log('ServiceWorker registration successful');
+                } catch (error) {
+                    console.log('ServiceWorker registration failed: ', error);
+                }
+            });
+        }
+
+        // Language functions
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+            localStorage.setItem('preferredLanguage', currentLanguage);
+            updateLanguage();
+        }
+        
+        function updateLanguage() {
+            const lang = languages[currentLanguage];
+            
+            // Update header
+            document.getElementById('app-title').textContent = lang.appTitle;
+            document.getElementById('lang-btn').textContent = lang.langBtn;
+            
+            // Update tabs
+            document.querySelector('#dashboard-tab').innerHTML = `<i class="fas fa-chart-line mr-1"></i>${lang.tabDashboard}`;
+            document.querySelector('#food-tab').innerHTML = `<i class="fas fa-utensils mr-1"></i>${lang.tabFood}`;
+            document.querySelector('#exercise-tab').innerHTML = `<i class="fas fa-dumbbell mr-1"></i>${lang.tabExercise}`;
+            document.querySelector('#water-tab').innerHTML = `<i class="fas fa-tint mr-1"></i>${lang.tabWater}`;
+            document.querySelector('#body-tab').innerHTML = `<i class="fas fa-weight mr-1"></i>${lang.tabBody}`;
+            
+            // Update dashboard cards
+            document.querySelector('.bg-gradient-to-br.from-pastel-blue h3').textContent = lang.todayCalories;
+            document.querySelector('.bg-gradient-to-br.from-pastel-blue .text-sm').textContent = `${lang.goal}: 2000`;
+            document.querySelector('.bg-gradient-to-br.from-pastel-mint h3').textContent = lang.exerciseTime;
+            document.querySelector('.bg-gradient-to-br.from-pastel-mint .text-sm').textContent = lang.minutes;
+            document.querySelector('.bg-gradient-to-br.from-pastel-peach h3').textContent = lang.waterIntake;
+            document.querySelector('.bg-gradient-to-br.from-pastel-peach .text-sm').textContent = `${lang.milliliters} / 2000`;
+            document.querySelector('.bg-gradient-to-br.from-pastel-lavender h3').textContent = lang.currentWeight;
+            
+            // Update chart titles
+            document.querySelectorAll('.bg-white.dark\\:bg-gray-800 h3')[0].textContent = lang.weeklyCaloriesTrend;
+            document.querySelectorAll('.bg-white.dark\\:bg-gray-800 h3')[1].textContent = lang.weightTrend;
+            document.querySelectorAll('.bg-white.dark\\:bg-gray-800 h3')[2].textContent = lang.exerciseDistribution;
+            
+            updateAllContent();
+        }
+        
+        function updateAllContent() {
+            updateFoodRecords();
+            updateExerciseRecords();
+            updateWaterRecords();
+            updateBodyRecords();
+            updateBMIAnalysis();
+            updateHealthSuggestions();
+        }
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved language
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang && languages[savedLang]) {
+                currentLanguage = savedLang;
+            }
+            
+            // Load saved data
+            loadData();
+            
+            // Dark mode detection
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                if (event.matches) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            });
+
+            initCharts();
+            updateLanguage();
+            updateDashboard();
+            updateFoodRecords();
+            updateExerciseRecords();
+            updateWaterRecords();
+            updateWaterProgress();
+            updateBodyRecords();
+            updateBMIAnalysis();
+            updateHealthSuggestions();
+            updateBodyChart();
+        });
+
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.remove('hidden');
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            if (tabName === 'dashboard') {
+                updateDashboard();
+                updateCharts();
+            }
+        }
+
+        // Food functions
+        function addFood() {
+            const name = document.getElementById('food-name').value.trim();
+            const calories = parseInt(document.getElementById('food-calories').value);
+            const meal = document.getElementById('food-meal').value;
+            
+            if (!name || !calories) {
+                showNotification('請填寫完整的食物資料', 'error');
+                return;
+            }
+            
+            const foodItem = {
+                id: Date.now(),
+                name,
+                calories,
+                meal,
+                time: new Date().toLocaleTimeString('zh-HK', { hour: '2-digit', minute: '2-digit' })
+            };
+            
+            data.food.push(foodItem);
+            saveData();
+            updateFoodRecords();
+            updateDashboard();
+            
+            // Clear form
+            document.getElementById('food-name').value = '';
+            document.getElementById('food-calories').value = '';
+            
+            showNotification('食物記錄已添加', 'success');
+        }
+
+        function updateFoodRecords() {
+            const recordsDiv = document.getElementById('food-records');
+            const todayFood = data.food.filter(item => isToday(item.id));
+            
+            if (todayFood.length === 0) {
+                recordsDiv.innerHTML = '<p class="text-gray-500 dark:text-gray-400 text-center py-8">暫無記錄</p>';
+                return;
+            }
+            
+            recordsDiv.innerHTML = todayFood.map(item => `
+                <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <div class="flex-1">
+                        <div class="font-medium">${item.name}</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">${getMealName(item.meal)} · ${item.time}</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-semibold text-primary">${item.calories} 卡</div>
+                        <button onclick="removeFood(${item.id})" class="text-red-500 hover:text-red-700 text-sm">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function removeFood(id) {
+            data.food = data.food.filter(item => item.id !== id);
+            saveData();
+            updateFoodRecords();
+            updateDashboard();
+            showNotification('食物記錄已刪除', 'success');
+        }
+
+        // Exercise functions
+        function addExercise() {
+            const type = document.getElementById('exercise-type').value;
+            const duration = parseInt(document.getElementById('exercise-duration').value);
+            const intensity = document.getElementById('exercise-intensity').value;
+            
+            if (!duration) {
+                showNotification('請填寫運動時間', 'error');
+                return;
+            }
+            
+            const exerciseItem = {
+                id: Date.now(),
+                type,
+                duration,
+                intensity,
+                time: new Date().toLocaleTimeString('zh-HK', { hour: '2-digit', minute: '2-digit' })
+            };
+            
+            data.exercise.push(exerciseItem);
+            saveData();
+            updateExerciseRecords();
+            updateDashboard();
+            
+            // Clear form
+            document.getElementById('exercise-duration').value = '';
+            
+            showNotification('運動記錄已添加', 'success');
+        }
+
+        function updateExerciseRecords() {
+            const recordsDiv = document.getElementById('exercise-records');
+            const todayExercise = data.exercise.filter(item => isToday(item.id));
+            
+            if (todayExercise.length === 0) {
+                recordsDiv.innerHTML = '<p class="text-gray-500 dark:text-gray-400 text-center py-8">暫無記錄</p>';
+                return;
+            }
+            
+            recordsDiv.innerHTML = todayExercise.map(item => `
+                <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <div class="flex-1">
+                        <div class="font-medium">${getExerciseName(item.type)}</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">${getIntensityName(item.intensity)} · ${item.time}</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-semibold text-primary">${item.duration} 分鐘</div>
+                        <button onclick="removeExercise(${item.id})" class="text-red-500 hover:text-red-700 text-sm">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function removeExercise(id) {
+            data.exercise = data.exercise.filter(item => item.id !== id);
+            saveData();
+            updateExerciseRecords();
+            updateDashboard();
+            showNotification('運動記錄已刪除', 'success');
+        }
+
+        // Water functions
+        function addWater(amount) {
+            const waterItem = {
+                id: Date.now(),
+                amount,
+                type: 'water',
+                time: new Date().toLocaleTimeString('zh-HK', { hour: '2-digit', minute: '2-digit' })
+            };
+            
+            data.water.push(waterItem);
+            saveData();
+            updateWaterRecords();
+            updateWaterProgress();
+            updateDashboard();
+            
+            showNotification(`已添加 ${amount}ml 飲水記錄`, 'success');
+        }
+
+        function addCustomWater() {
+            const amount = parseInt(document.getElementById('custom-water').value);
+            const type = document.getElementById('drink-type').value;
+            
+            if (!amount) {
+                showNotification('請填寫飲水量', 'error');
+                return;
+            }
+            
+            const waterItem = {
+                id: Date.now(),
+                amount,
+                type,
+                time: new Date().toLocaleTimeString('zh-HK', { hour: '2-digit', minute: '2-digit' })
+            };
+            
+            data.water.push(waterItem);
+            saveData();
+            updateWaterRecords();
+            updateWaterProgress();
+            updateDashboard();
+            
+            // Clear form
+            document.getElementById('custom-water').value = '';
+            
+            showNotification(`已添加 ${amount}ml ${getDrinkTypeName(type)}記錄`, 'success');
+        }
+
+        function updateWaterRecords() {
+            const recordsDiv = document.getElementById('water-records');
+            const todayWater = data.water.filter(item => isToday(item.id));
+            
+            if (todayWater.length === 0) {
+                recordsDiv.innerHTML = '<p class="text-gray-500 dark:text-gray-400 text-center py-8">暫無記錄</p>';
+                return;
+            }
+            
+            recordsDiv.innerHTML = todayWater.map(item => `
+                <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <div class="flex-1">
+                        <div class="font-medium">${getDrinkTypeName(item.type)}</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">${item.time}</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-semibold text-primary">${item.amount} ml</div>
+                        <button onclick="removeWater(${item.id})" class="text-red-500 hover:text-red-700 text-sm">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateWaterProgress() {
+            const todayWater = data.water.filter(item => isToday(item.id));
+            const totalWater = todayWater.reduce((sum, item) => sum + item.amount, 0);
+            const goal = data.dailyGoals.water;
+            const percentage = Math.min((totalWater / goal) * 100, 100);
+            
+            document.getElementById('water-progress-text').textContent = `${totalWater} / ${goal} ml`;
+            document.getElementById('water-progress-bar').style.width = `${percentage}%`;
+        }
+
+        function removeWater(id) {
+            data.water = data.water.filter(item => item.id !== id);
+            saveData();
+            updateWaterRecords();
+            updateWaterProgress();
+            updateDashboard();
+            showNotification('飲水記錄已刪除', 'success');
+        }
+
+        // Body functions
+        function addBodyRecord() {
+            const weight = parseFloat(document.getElementById('body-weight').value);
+            const height = parseInt(document.getElementById('body-height').value);
+            const bodyFat = parseFloat(document.getElementById('body-fat').value);
+            
+            if (!weight) {
+                showNotification('請填寫體重', 'error');
+                return;
+            }
+            
+            const bodyRecord = {
+                id: Date.now(),
+                weight,
+                height: height || null,
+                bodyFat: bodyFat || null,
+                date: new Date().toLocaleDateString('zh-HK'),
+                time: new Date().toLocaleTimeString('zh-HK', { hour: '2-digit', minute: '2-digit' })
+            };
+            
+            data.body.push(bodyRecord);
+            saveData();
+            updateBodyRecords();
+            updateBMIAnalysis();
+            updateHealthSuggestions();
+            updateDashboard();
+            updateBodyChart();
+            
+            // Clear weight field only, keep height for future entries
+            document.getElementById('body-weight').value = '';
+            document.getElementById('body-fat').value = '';
+            
+            showNotification('身體記錄已添加', 'success');
+        }
+
+        function updateBodyRecords() {
+            const recordsDiv = document.getElementById('body-records');
+            
+            if (data.body.length === 0) {
+                recordsDiv.innerHTML = '<p class="text-gray-500 dark:text-gray-400 text-center py-8">暫無記錄</p>';
+                return;
+            }
+            
+            // Show latest 10 records
+            const recentRecords = data.body.slice(-10).reverse();
+            
+            recordsDiv.innerHTML = recentRecords.map(record => `
+                <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <div class="flex-1">
+                        <div class="font-medium">體重: ${record.weight} kg</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            ${record.height ? `身高: ${record.height} cm` : ''}
+                            ${record.bodyFat ? ` · 體脂: ${record.bodyFat}%` : ''}
+                            ${record.height && record.bodyFat ? ' · ' : ''}
+                            ${record.date} ${record.time}
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        ${record.height ? `<div class="font-semibold text-primary">BMI: ${calculateBMI(record.weight, record.height)}</div>` : ''}
+                        <button onclick="removeBodyRecord(${record.id})" class="text-red-500 hover:text-red-700 text-sm">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function removeBodyRecord(id) {
+            data.body = data.body.filter(item => item.id !== id);
+            saveData();
+            updateBodyRecords();
+            updateBMIAnalysis();
+            updateHealthSuggestions();
+            updateDashboard();
+            updateBodyChart();
+            showNotification('身體記錄已刪除', 'success');
+        }
+
+        function calculateBMI(weight, height) {
+            if (!weight || !height) return null;
+            const bmi = weight / Math.pow(height / 100, 2);
+            return Math.round(bmi * 10) / 10;
+        }
+
+        function getBMICategory(bmi) {
+            if (bmi < 18.5) return { category: '過輕', color: 'text-blue-500', bg: 'bg-blue-50 dark:bg-blue-900/20' };
+            if (bmi < 24) return { category: '正常', color: 'text-green-500', bg: 'bg-green-50 dark:bg-green-900/20' };
+            if (bmi < 27) return { category: '過重', color: 'text-yellow-500', bg: 'bg-yellow-50 dark:bg-yellow-900/20' };
+            if (bmi < 30) return { category: '輕度肥胖', color: 'text-orange-500', bg: 'bg-orange-50 dark:bg-orange-900/20' };
+            if (bmi < 35) return { category: '中度肥胖', color: 'text-red-500', bg: 'bg-red-50 dark:bg-red-900/20' };
+            return { category: '重度肥胖', color: 'text-red-700', bg: 'bg-red-100 dark:bg-red-900/30' };
+        }
+
+        function updateBMIAnalysis() {
+            const analysisDiv = document.getElementById('bmi-analysis');
+            const latestRecord = data.body[data.body.length - 1];
+            
+            if (!latestRecord || !latestRecord.height) {
+                analysisDiv.innerHTML = '<div class="text-center py-8 text-gray-500 dark:text-gray-400">請記錄體重和身高以計算 BMI</div>';
+                return;
+            }
+            
+            const bmi = calculateBMI(latestRecord.weight, latestRecord.height);
+            const bmiInfo = getBMICategory(bmi);
+            
+            analysisDiv.innerHTML = `
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">${bmi}</div>
+                    <div class="inline-block px-4 py-2 rounded-full ${bmiInfo.bg} ${bmiInfo.color} font-medium mb-4">
+                        ${bmiInfo.category}
+                    </div>
+                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 mb-4">
+                        <div class="h-3 rounded-full transition-all duration-500 ${
+                            bmi < 18.5 ? 'bg-blue-500 w-1/6' :
+                            bmi < 24 ? 'bg-green-500 w-2/6' :
+                            bmi < 27 ? 'bg-yellow-500 w-3/6' :
+                            bmi < 30 ? 'bg-orange-500 w-4/6' :
+                            bmi < 35 ? 'bg-red-500 w-5/6' : 'bg-red-700 w-full'
+                        }"></div>
+                    </div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">
+                        <div class="flex justify-between">
+                            <span>過輕</span>
+                            <span>正常</span>
+                            <span>過重</span>
+                            <span>肥胖</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateHealthSuggestions() {
+            const suggestionsDiv = document.getElementById('health-suggestions');
+            const latestRecord = data.body[data.body.length - 1];
+            
+            if (!latestRecord) {
+                suggestionsDiv.innerHTML = '<div class="text-center py-8 text-gray-500 dark:text-gray-400">記錄身體數據後會顯示個人化建議</div>';
+                return;
+            }
+            
+            let suggestions = [];
+            
+            if (latestRecord.height) {
+                const bmi = calculateBMI(latestRecord.weight, latestRecord.height);
+                const bmiInfo = getBMICategory(bmi);
+                
+                if (bmi < 18.5) {
+                    suggestions.push({
+                        icon: 'fas fa-arrow-up',
+                        text: '建議增加健康體重，多攝取蛋白質和複合碳水化合物',
+                        color: 'text-blue-500'
+                    });
+                } else if (bmi >= 24) {
+                    suggestions.push({
+                        icon: 'fas fa-running',
+                        text: '建議增加有氧運動，控制卡路里攝取',
+                        color: 'text-orange-500'
+                    });
+                } else {
+                    suggestions.push({
+                        icon: 'fas fa-check-circle',
+                        text: '體重正常，保持現有的健康習慣',
+                        color: 'text-green-500'
+                    });
+                }
+            }
+            
+            if (latestRecord.bodyFat) {
+                if (latestRecord.bodyFat > 25) {
+                    suggestions.push({
+                        icon: 'fas fa-dumbbell',
+                        text: '建議增加力量訓練，減少體脂率',
+                        color: 'text-purple-500'
+                    });
+                } else if (latestRecord.bodyFat < 10) {
+                    suggestions.push({
+                        icon: 'fas fa-exclamation-triangle',
+                        text: '體脂率偏低，注意營養補充',
+                        color: 'text-yellow-500'
+                    });
+                }
+            }
+            
+            // General suggestions
+            suggestions.push({
+                icon: 'fas fa-glass-water',
+                text: '每日飲水 2000ml 以上',
+                color: 'text-cyan-500'
+            });
+            
+            suggestions.push({
+                icon: 'fas fa-moon',
+                text: '保持規律睡眠，每晚 7-8 小時',
+                color: 'text-indigo-500'
+            });
+            
+            suggestionsDiv.innerHTML = suggestions.map(suggestion => `
+                <div class="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <i class="${suggestion.icon} ${suggestion.color} text-lg"></i>
+                    <span class="text-sm">${suggestion.text}</span>
+                </div>
+            `).join('');
+        }
+
+        function updateBodyChart() {
+            if (!bodyChart) return;
+            
+            const last7Records = data.body.slice(-7);
+            const labels = last7Records.map(record => record.date);
+            const weights = last7Records.map(record => record.weight);
+            const bodyFats = last7Records.map(record => record.bodyFat || null);
+            
+            bodyChart.data.labels = labels;
+            bodyChart.data.datasets[0].data = weights;
+            bodyChart.data.datasets[1].data = bodyFats;
+            bodyChart.update();
+        }
+
+        // Dashboard functions
+        function updateDashboard() {
+            // Update today's summary
+            const todayFood = data.food.filter(item => isToday(item.id));
+            const todayExercise = data.exercise.filter(item => isToday(item.id));
+            const todayWater = data.water.filter(item => isToday(item.id));
+            
+            const totalCalories = todayFood.reduce((sum, item) => sum + item.calories, 0);
+            const totalExercise = todayExercise.reduce((sum, item) => sum + item.duration, 0);
+            const totalWater = todayWater.reduce((sum, item) => sum + item.amount, 0);
+            
+            document.getElementById('today-calories').textContent = totalCalories;
+            document.getElementById('today-exercise').textContent = totalExercise;
+            document.getElementById('today-water').textContent = totalWater;
+            
+            // Update body info
+            const latestBody = data.body[data.body.length - 1];
+            if (latestBody) {
+                document.getElementById('current-weight').textContent = `${latestBody.weight} kg`;
+                if (latestBody.height) {
+                    const bmi = calculateBMI(latestBody.weight, latestBody.height);
+                    document.getElementById('bmi-display').textContent = `BMI: ${bmi}`;
+                } else {
+                    document.getElementById('bmi-display').textContent = 'BMI: --';
+                }
+            } else {
+                document.getElementById('current-weight').textContent = '--';
+                document.getElementById('bmi-display').textContent = 'BMI: --';
+            }
+        }
+
+        // Chart functions
+        function initCharts() {
+            // Calories chart
+            const caloriesCtx = document.getElementById('caloriesChart').getContext('2d');
+            caloriesChart = new Chart(caloriesCtx, {
+                type: 'line',
+                data: {
+                    labels: ['週一', '週二', '週三', '週四', '週五', '週六', '週日'],
+                    datasets: [{
+                        label: '卡路里',
+                        data: [1800, 2100, 1950, 2200, 1700, 2300, 2000],
+                        borderColor: '#F8BBD9',
+                        backgroundColor: 'rgba(248, 187, 217, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Weight chart (in dashboard)
+            const weightCtx = document.getElementById('weightChart').getContext('2d');
+            weightChart = new Chart(weightCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '體重 (kg)',
+                        data: [],
+                        borderColor: '#F472B6',
+                        backgroundColor: 'rgba(244, 114, 182, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+
+            // Exercise chart
+            const exerciseCtx = document.getElementById('exerciseChart').getContext('2d');
+            exerciseChart = new Chart(exerciseCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['跑步', '健身室', '瑜伽', '其他'],
+                    datasets: [{
+                        data: [30, 25, 20, 25],
+                        backgroundColor: [
+                            '#F8BBD9',
+                            '#A8E6CF',
+                            '#FFE5B4',
+                            '#DDD6FE'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // Body measurements chart (in body tab)
+            const bodyCtx = document.getElementById('bodyChart').getContext('2d');
+            bodyChart = new Chart(bodyCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '體重 (kg)',
+                        data: [],
+                        borderColor: '#F472B6',
+                        backgroundColor: 'rgba(244, 114, 182, 0.1)',
+                        yAxisID: 'y',
+                        tension: 0.4
+                    }, {
+                        label: '體脂率 (%)',
+                        data: [],
+                        borderColor: '#FFE5B4',
+                        backgroundColor: 'rgba(255, 229, 180, 0.1)',
+                        yAxisID: 'y1',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                        },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: '體重 (kg)'
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: '體脂率 (%)'
+                            },
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateCharts() {
+            // Update weight chart with real data
+            if (weightChart && data.body.length > 0) {
+                const last7Records = data.body.slice(-7);
+                weightChart.data.labels = last7Records.map(record => record.date);
+                weightChart.data.datasets[0].data = last7Records.map(record => record.weight);
+                weightChart.update();
+            }
+            
+            caloriesChart.update();
+            exerciseChart.update();
+        }
+
+        // Utility functions
+        function isToday(timestamp) {
+            const today = new Date();
+            const date = new Date(timestamp);
+            return date.toDateString() === today.toDateString();
+        }
+
+        function getMealName(meal) {
+            const meals = {
+                breakfast: '早餐',
+                lunch: '午餐',
+                dinner: '晚餐',
+                snack: '小食'
+            };
+            return meals[meal] || meal;
+        }
+
+        function getExerciseName(type) {
+            const exercises = {
+                running: '跑步',
+                walking: '步行',
+                cycling: '單車',
+                swimming: '游泳',
+                gym: '健身室',
+                yoga: '瑜伽',
+                other: '其他'
+            };
+            return exercises[type] || type;
+        }
+
+        function getIntensityName(intensity) {
+            const intensities = {
+                low: '低強度',
+                medium: '中強度',
+                high: '高強度'
+            };
+            return intensities[intensity] || intensity;
+        }
+
+        function getDrinkTypeName(type) {
+            const drinks = {
+                water: '清水',
+                tea: '茶',
+                coffee: '咖啡',
+                juice: '果汁',
+                sports: '運動飲品',
+                other: '其他'
+            };
+            return drinks[type] || type;
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg text-white transform transition-all duration-300 ${
+                type === 'success' ? 'bg-green-500' : 'bg-red-500'
+            }`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // CSS for tab styling
+        const style = document.createElement('style');
+        style.textContent = `
+            .tab-btn {
+                color: #6B7280;
+            }
+            .tab-btn.active {
+                background-color: #F8BBD9;
+                color: white;
+            }
+            .dark .tab-btn {
+                color: #9CA3AF;
+            }
+            .dark .tab-btn.active {
+                background-color: #F8BBD9;
+                color: white;
+            }
+            #caloriesChart, #exerciseChart, #weightChart, #bodyChart {
+                height: 200px !important;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
